@@ -1,0 +1,39 @@
+
+<!--<div id="weatherResults">-->
+<!--    <h3>weather in {{ location }}</h3>-->
+<!--     <h2>{{ temp }}° {{temp_units}}</h2>-->
+<!--    <h3>{{ weather }}</h3>-->
+<!--    <img src="{{ icon_url }}" >-->
+<!--    <h4>feels like: {{ feels_like }}°{{temp_units}} </h4>-->
+<!--    <h4>sunrise: {{ dt_obj }}° </h4>-->
+<!--    <h4>SA time: {{ now }}</h4>-->
+<!--    <h4>GMT time: {{utc_time}}</h4>-->
+<!--</div>-->
+
+
+{% extends "base.html" %}
+{% block content %}
+<table id="data" class="table table-striped">
+   <thead>
+     <tr>
+       <th>Location</th>
+     </tr>
+   </thead>
+   <tbody>
+   </tbody>
+ </table>
+{% endblock %}
+
+{% block scripts %}
+ <script>
+   $(document).ready(function () {
+     $('#data').DataTable({
+       ajax: '/api/results',
+       pageLength: 25,
+       columns: [
+         {data: 'location'}
+       ],
+     });
+   });
+ </script>
+{% endblock %}
